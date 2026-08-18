@@ -1,11 +1,286 @@
-&lt;!DOCTYPE html&gt;
-&lt;html lang="ko"&gt;
-&lt;head&gt;
-&lt;meta charset="UTF-8" /&gt;
-&lt;meta name="viewport" content="width=device-width, initial-scale=1.0" /&gt;
-&lt;title&gt;김코치 학생 성장 포트폴리오&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
-Placeholder - to be replaced
-&lt;/body&gt;
-&lt;/html&gt;
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>김코치 학생 성장 포트폴리오</title>
+<style>
+  :root{
+    --primary:#3b6ea5;
+    --primary-light:#eaf2fb;
+    --accent:#f2a154;
+    --green:#4caf82;
+    --text:#25303b;
+    --muted:#6b7885;
+    --bg:#f5f7fa;
+    --card:#ffffff;
+    --border:#e2e8f0;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;padding:0;background:var(--bg);color:var(--text);
+    font-family:"Malgun Gothic","맑은 고딕",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    line-height:1.7;
+  }
+  .wrap{max-width:960px;margin:0 auto;padding:24px 16px 64px;}
+  header.hero{
+    background:linear-gradient(135deg,#3b6ea5,#5a94c9);
+    color:#fff;border-radius:18px;padding:32px 28px;margin-bottom:24px;
+    box-shadow:0 8px 24px rgba(59,110,165,.25);
+  }
+  header.hero h1{margin:0 0 6px;font-size:28px;letter-spacing:-.5px;}
+  header.hero p{margin:0;opacity:.92;font-size:15px;}
+  .meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px;}
+  .chip{background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.35);
+    padding:6px 14px;border-radius:999px;font-size:13px;}
+  nav.tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px;}
+  nav.tabs button{
+    border:1px solid var(--border);background:#fff;color:var(--muted);
+    padding:10px 18px;border-radius:999px;cursor:pointer;font-size:14px;font-weight:600;
+    transition:.2s;
+  }
+  nav.tabs button:hover{border-color:var(--primary);color:var(--primary);}
+  nav.tabs button.active{background:var(--primary);color:#fff;border-color:var(--primary);}
+  section.panel{display:none;animation:fade .25s ease;}
+  section.panel.active{display:block;}
+  @keyframes fade{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:none;}}
+  .card{
+    background:var(--card);border:1px solid var(--border);border-radius:16px;
+    padding:22px 24px;margin-bottom:16px;box-shadow:0 2px 8px rgba(37,48,59,.05);
+  }
+  .card h2{margin:0 0 14px;font-size:20px;color:var(--primary);
+    border-left:5px solid var(--accent);padding-left:12px;}
+  .card h3{margin:18px 0 8px;font-size:16px;color:var(--text);}
+  .card h3:first-of-type{margin-top:4px;}
+  ul{margin:8px 0 0;padding-left:20px;}
+  li{margin-bottom:8px;}
+  .label{display:inline-block;font-weight:700;color:var(--primary);min-width:74px;}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;}
+  .mini{background:var(--primary-light);border-radius:12px;padding:16px 18px;}
+  .mini h4{margin:0 0 8px;font-size:15px;color:var(--primary);}
+  .mini p{margin:0;font-size:14px;color:var(--muted);}
+  .goal{border:1px solid var(--border);border-radius:12px;padding:16px 18px;margin-bottom:12px;
+    background:#fcfdff;}
+  .goal .title{font-weight:700;color:var(--green);margin-bottom:8px;font-size:15px;}
+  table{width:100%;border-collapse:collapse;margin-top:8px;font-size:14px;}
+  th,td{border:1px solid var(--border);padding:10px 12px;text-align:left;vertical-align:top;}
+  th{background:var(--primary-light);color:var(--primary);font-weight:700;}
+  .bar-row{margin-bottom:14px;}
+  .bar-row .bl{display:flex;justify-content:space-between;font-size:14px;margin-bottom:5px;}
+  .bar{height:10px;background:#e8edf3;border-radius:999px;overflow:hidden;}
+  .bar span{display:block;height:100%;border-radius:999px;background:linear-gradient(90deg,#4caf82,#3b6ea5);
+    width:0;transition:width 1s ease;}
+  .cheer{background:linear-gradient(135deg,#fff6ec,#fdeede);border:1px solid #f7d9b8;
+    border-radius:16px;padding:24px;font-size:15px;}
+  footer{text-align:center;color:var(--muted);font-size:13px;margin-top:28px;}
+  .note{font-size:13px;color:var(--muted);margin-top:10px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="hero">
+    <h1>김코치 학생 성장 포트폴리오</h1>
+    <p>학습 방향 네비게이터 · 강점 기반 성장 분석 리포트</p>
+    <div class="meta">
+      <span class="chip">3학년 4반</span>
+      <span class="chip">평가일 2026-08-16</span>
+      <span class="chip">자료: 김코치 행동특성평가</span>
+      <span class="chip">작성일 2026-08-18</span>
+    </div>
+  </header>
+
+  <nav class="tabs">
+    <button class="active" data-tab="summary">현재 상태</button>
+    <button data-tab="strength">강점</button>
+    <button data-tab="growth">성장 영역</button>
+    <button data-tab="strategy">학습 방향</button>
+    <button data-tab="goals">한 달 목표</button>
+    <button data-tab="books">추천도서</button>
+    <button data-tab="jobs">관련 직업</button>
+  </nav>
+
+  <section class="panel active" id="summary">
+    <div class="card">
+      <h2>현재 상태 요약</h2>
+      <p>김코치 학생은 <strong>어려움을 느끼는 과제도 포기하지 않고 끝까지 해결하려고 남아서 시도하는 성실한 자세</strong>를 가진 학생입니다.
+      학습 진행 속도는 다소 느린 편이지만, 방과 후에 남아서라도 과제를 마무리하려는 책임감 있는 태도가 꾸준히 관찰됩니다.</p>
+      <p>한편 평소 피로감을 호소하며 눕고 싶어 하는 모습이 자주 관찰되어 신체적 컨디션 관리와 활력 있는 생활 습관 형성에 대한 지도와 관심이 필요하며,
+      주로 혼자 시간을 보내 또래와의 상호작용 기회가 상대적으로 적은 편입니다.</p>
+      <p>꾸준한 격려와 단계적인 학습 지원, 컨디션 관리에 대한 배려가 함께 이루어진다면 <strong>학습 속도와 또래관계 모두에서 점진적인 향상</strong>이 기대되는 학생입니다.</p>
+
+      <h3>영역별 현재 모습</h3>
+      <div class="bar-row"><div class="bl"><span>과제 지속성 · 책임감</span><span>강점 영역</span></div><div class="bar"><span data-w="90%"></span></div></div>
+      <div class="bar-row"><div class="bl"><span>성실한 학습 태도</span><span>강점 영역</span></div><div class="bar"><span data-w="85%"></span></div></div>
+      <div class="bar-row"><div class="bl"><span>학습 진행 속도</span><span>성장 가능 영역</span></div><div class="bar"><span data-w="45%"></span></div></div>
+      <div class="bar-row"><div class="bl"><span>또래 상호작용 기회</span><span>성장 가능 영역</span></div><div class="bar"><span data-w="40%"></span></div></div>
+      <div class="bar-row"><div class="bl"><span>컨디션 · 활력 관리</span><span>성장 가능 영역</span></div><div class="bar"><span data-w="35%"></span></div></div>
+      <p class="note">※ 막대는 기록된 관찰 서술을 시각적으로 표현한 것이며, 점수화된 평가나 등급이 아닙니다.</p>
+    </div>
+  </section>
+
+  <section class="panel" id="strength">
+    <div class="card">
+      <h2>강점</h2>
+      <ul>
+        <li><strong>끝까지 해내는 과제 지속력</strong> — 어려움을 느끼는 과제도 포기하지 않고 끝까지 해결하려고 시도합니다.</li>
+        <li><strong>책임감 있는 태도</strong> — 과제를 끝까지 해결하기 위해 방과 후에 남아서 시도할 만큼 자신의 몫을 소중히 여깁니다.</li>
+        <li><strong>성실함과 인내심</strong> — 속도가 느려도 중간에 놓지 않는 꾸준함은 장기 학습에서 큰 힘이 되는 자질입니다.</li>
+      </ul>
+      <h3>유지하면 좋은 학습 습관</h3>
+      <ul>
+        <li>과제를 끝맺는 습관 그대로 유지하기 — 완수 경험은 자신감의 재료가 됩니다.</li>
+        <li>끝까지 해낸 날은 스스로 기록해 두기 (예: 달력에 ○ 표시).</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="panel" id="growth">
+    <div class="card">
+      <h2>성장 가능성이 있는 영역</h2>
+      <h3>영역 1 · 컨디션과 활력 있는 생활 습관</h3>
+      <p><span class="label">현재 상태</span> 평소 피로감을 호소하며 눕고 싶어 하는 모습이 자주 관찰됩니다.</p>
+      <p><span class="label">추천 활동</span> 수업 사이 2분 스트레칭, 취침·기상 시간을 적은 '하루 컨디션 카드' 작성, 오전 중 가장 집중이 잘 되는 시간에 어려운 과제 배치하기.</p>
+      <p><span class="label">기대 효과</span> 활력이 회복되면 같은 시간에 이해 속도가 향상되고 수업 참여가 한결 편안해집니다.</p>
+
+      <h3>영역 2 · 또래와의 상호작용 기회</h3>
+      <p><span class="label">현재 상태</span> 주로 혼자 시간을 보내며, 또래와의 상호작용 기회가 상대적으로 적습니다.</p>
+      <p><span class="label">추천 활동</span> 2~3명 소집단 활동 참여, 짝과 함께 문제 한 개 풀어보기, 하루에 한 번 친구에게 먼저 인사하거나 질문하기.</p>
+      <p><span class="label">기대 효과</span> 소집단 활동을 통한 교우관계 형성 기회가 넓어지고, 함께 배우며 학습 이해도도 자연스럽게 높아집니다.</p>
+
+      <h3>영역 3 · 학습 진행 속도</h3>
+      <p><span class="label">현재 상태</span> 학습 진행 속도가 다소 느린 편이지만, 끝까지 마무리하려는 태도는 확실합니다.</p>
+      <p><span class="label">추천 활동</span> 과제를 3단계로 쪼개어 한 단계씩 완료 표시하기, 타이머로 10분 집중 후 2분 휴식 반복하기.</p>
+      <p><span class="label">기대 효과</span> 단계적인 학습 지원과 작은 성공 경험이 쌓이면 속도와 자신감이 함께 향상됩니다.</p>
+    </div>
+  </section>
+
+  <section class="panel" id="strategy">
+    <div class="card">
+      <h2>맞춤 학습 방향</h2>
+      <div class="grid">
+        <div class="mini">
+          <h4>학습 습관</h4>
+          <p>· 과제를 시작 전 3단계로 나눠 적기<br>
+             · 10분 집중 + 2분 스트레칭 반복하기<br>
+             · 자기 전 오늘 배운 것 1가지 소리내어 말하기<br>
+             · 취침 시간을 정해 매일 같은 시간에 잠들기</p>
+        </div>
+        <div class="mini">
+          <h4>자기주도 학습</h4>
+          <p>· 오늘 끝낼 과제 1개만 골라 목표로 적기<br>
+             · 완료한 단계에 체크 표시하기<br>
+             · 하루 끝에 '끝까지 한 일' 한 줄 기록하기</p>
+        </div>
+        <div class="mini">
+          <h4>문제 해결 능력</h4>
+          <p>· 막힌 문제는 3분 시도 후 도움 요청하기<br>
+             · 틀린 문제 옆에 '왜 틀렸는지' 한 문장 쓰기<br>
+             · 푼 방법을 친구나 선생님께 말로 설명하기</p>
+        </div>
+        <div class="mini">
+          <h4>협업 및 의사소통</h4>
+          <p>· 소집단(2~3명) 활동에 주 2회 참여하기<br>
+             · 하루 한 번 친구에게 먼저 말 걸기<br>
+             · 모둠에서 '기록 담당' 같은 작은 역할 맡기</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel" id="goals">
+    <div class="card">
+      <h2>앞으로 한 달 실천 목표</h2>
+      <div class="goal">
+        <div class="title">목표 1 · 매일 같은 시간에 잠들어 컨디션 회복하기</div>
+        <p><span class="label">실천 방법</span> 취침 시간을 정해 달력에 표시하고, 지킨 날은 ○를 그립니다. 수업 사이 쉬는 시간마다 2분 스트레칭을 합니다.</p>
+        <p><span class="label">기대 효과</span> 피로감이 줄어 수업 중 집중이 편해지고, 같은 시간에 더 많이 이해할 수 있습니다.</p>
+      </div>
+      <div class="goal">
+        <div class="title">목표 2 · 과제를 3단계로 나눠 끝내기</div>
+        <p><span class="label">실천 방법</span> 과제를 시작하기 전 ①읽기 ②풀기 ③확인하기 로 나눠 적고, 각 단계를 마칠 때마다 체크합니다.</p>
+        <p><span class="label">기대 효과</span> 이미 가진 '끝까지 해내는 힘'에 속도가 더해져 완료 시간이 점점 줄어듭니다.</p>
+      </div>
+      <div class="goal">
+        <div class="title">목표 3 · 주 2회 소집단 활동 참여하기</div>
+        <p><span class="label">실천 방법</span> 2~3명 모둠 활동에 주 2회 참여하고, 그중 한 번은 '기록 담당' 역할을 맡습니다. 하루 한 번 먼저 인사합니다.</p>
+        <p><span class="label">기대 효과</span> 교우관계 형성 기회가 넓어지고, 친구와 함께 배우며 어려운 부분을 더 빨리 해결할 수 있습니다.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel" id="books">
+    <div class="card">
+      <h2>추천도서</h2>
+      <p>김코치 학생의 <strong>끝까지 해내는 성실함</strong>을 응원하고, <strong>컨디션 관리 · 또래관계 · 학습 속도</strong> 성장을 돕는 방향으로 골랐습니다.</p>
+      <table>
+        <thead><tr><th>연결 영역</th><th>추천 도서</th><th>추천 이유</th></tr></thead>
+        <tbody>
+          <tr><td>강점(끈기·책임감)</td><td>『아낌없이 주는 나무』 셸 실버스타인</td><td>묵묵히 자기 자리를 지키는 마음의 가치를 느끼며, 자신의 성실함을 스스로 소중히 여기게 됨</td></tr>
+          <tr><td>강점(끝까지 해내기)</td><td>『프레드릭』 레오 리오니 / 무민 시리즈</td><td>속도가 다르더라도 각자의 방식으로 해내는 힘이 있음을 배움</td></tr>
+          <tr><td>학습 속도·자신감</td><td>『틀려도 괜찮아』 마키타 신지</td><td>천천히 가도, 틀려도 괜찮다는 메시지로 도전에 대한 부담 완화</td></tr>
+          <tr><td>학습 습관</td><td>『공부가 되는 초등 습관』류 초등 학습습관 워크북</td><td>과제를 단계로 쪼개고 체크하는 방법을 스스로 연습</td></tr>
+          <tr><td>또래관계</td><td>『짝꿍 최영대』 채인선 / 『양파의 왕따 일기』 문선이</td><td>친구에게 다가가는 마음과 방법을 이야기로 익힘</td></tr>
+          <tr><td>컨디션·생활 습관</td><td>어린이 수면·건강 그림책류</td><td>수면과 활력의 관계를 이해하고 생활 습관을 스스로 조절</td></tr>
+        </tbody>
+      </table>
+      <p class="note">※ 도서 목록은 평가 기록의 강점·성장 영역에 맞춰 제안한 참고안이며, 학교 도서관 보유 상황에 따라 유사 주제 도서로 대체할 수 있습니다.</p>
+    </div>
+  </section>
+
+  <section class="panel" id="jobs">
+    <div class="card">
+      <h2>관련 직업(진로) 추천</h2>
+      <p>기록된 강점인 <strong>끈기 · 책임감 · 끝까지 마무리하는 성실함</strong>이 특히 잘 발휘될 수 있는 분야입니다.</p>
+      <table>
+        <thead><tr><th>직업 분야</th><th>연결되는 강점</th><th>지금 해볼 수 있는 작은 경험</th></tr></thead>
+        <tbody>
+          <tr><td>연구원 · 실험 분석가</td><td>오래 걸려도 끝까지 확인하는 끈기</td><td>관찰 일지 쓰기, 식물 기르기 기록</td></tr>
+          <tr><td>정비·기술 장인 (공예·기계·제과 등)</td><td>포기하지 않고 완성하는 손끝의 성실함</td><td>만들기 키트 끝까지 완성하기</td></tr>
+          <tr><td>사서·기록관리 전문가</td><td>차분하게 마무리하는 책임감</td><td>학급 도서 정리 도우미 맡기</td></tr>
+          <tr><td>동물 돌봄·수의 보조</td><td>꾸준히 돌보는 성실함과 책임감</td><td>학급 화분·동물 돌봄 당번 참여</td></tr>
+          <tr><td>프로그래머·데이터 정리 직군</td><td>막혀도 다시 시도하는 문제 해결 태도</td><td>블록 코딩으로 짧은 프로그램 완성</td></tr>
+          <tr><td>생활체육지도 등 건강관리 분야</td><td>컨디션 관리 경험을 강점으로 전환</td><td>하루 스트레칭 기록표 만들기</td></tr>
+        </tbody>
+      </table>
+      <p class="note">※ 진로 제안은 현재 기록된 강점을 기준으로 한 탐색 예시이며, 학생의 흥미 변화에 따라 얼마든지 넓어질 수 있습니다.</p>
+    </div>
+  </section>
+
+  <div class="cheer">
+    <strong>응원 메시지</strong><br>
+    김코치 학생, 어려운 과제 앞에서도 자리를 지키며 방과 후까지 남아 끝내려는 그 마음은 아무나 가질 수 없는 큰 힘이에요.
+    빠른 것보다 <em>끝까지 가는 것</em>이 훨씬 어려운 일인데, 김코치 학생은 이미 그 어려운 걸 해내고 있어요.
+    이제 몸이 조금 더 가벼워지고 옆에 함께 걷는 친구가 생긴다면, 지금의 성실함은 훨씬 멀리까지 데려다줄 거예요.
+    선생님과 친구들이 늘 곁에서 응원하고 있습니다. 오늘도 한 걸음, 충분히 잘하고 있어요!
+  </div>
+
+  <footer>
+    데이터 출처: SharePoint 행동특성평가 목록 「김코치 행동특성평가」(평가일 2026-08-16) · 본 리포트는 성장 지원 목적이며 등급·비교 평가가 아닙니다.
+  </footer>
+</div>
+
+<script>
+  // 탭 전환
+  var tabs = document.querySelectorAll('nav.tabs button');
+  var panels = document.querySelectorAll('section.panel');
+  tabs.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      tabs.forEach(function (b) { b.classList.remove('active'); });
+      panels.forEach(function (p) { p.classList.remove('active'); });
+      btn.classList.add('active');
+      document.getElementById(btn.dataset.tab).classList.add('active');
+      if (btn.dataset.tab === 'summary') animateBars();
+    });
+  });
+
+  // 막대 애니메이션
+  function animateBars() {
+    document.querySelectorAll('.bar span').forEach(function (el) {
+      el.style.width = '0';
+      setTimeout(function () { el.style.width = el.dataset.w; }, 60);
+    });
+  }
+  window.addEventListener('load', animateBars);
+</script>
+</body>
+</html>
